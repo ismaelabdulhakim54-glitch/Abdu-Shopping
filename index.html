@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABDU Shopping</title>
+<style>
+body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f5f5f5; }
+header { background:#1E90FF; color:white; padding:20px; text-align:center; font-size:2em; position:sticky; top:0; transition: 0.3s;}
+header.small { font-size:1.2em; }
+.container { max-width:1000px; margin:20px auto; }
+.grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:15px; }
+.grid img { width:100%; cursor:pointer; border-radius:10px; }
+#about { background:white; padding:20px; margin-top:20px; border-radius:10px; }
+.phone { font-weight:bold; color:#1E90FF; }
+</style>
+</head>
+<body>
+
+<header id="header">ABDU Shopping</header>
+
+<div class="container">
+  <div class="grid">
+    <img src="images/Screenshot_20251205_192448_Google.jpg" alt="Image 1">
+    <img src="images/Screenshot_20251205_192622_Google.jpg" alt="Image 2">
+    <img src="images/Screenshot_20251205_192745_Google.jpg" alt="Image 3">
+    <img src="images/Screenshot_20251205_192839_Google.jpg" alt="Image 4">
+    <img src="images/Screenshot_20251205_193105_Google.jpg" alt="Image 5">
+    <img src="images/Screenshot_20251205_193134_Google.jpg" alt="Image 6">
+    <img src="images/Screenshot_20251205_195230_Google.jpg" alt="Image 7">
+    <img src="images/Screenshot_20251230_230453_Gallery.jpg" alt="Image 8">
+    <img src="images/Screenshot_20251230_230517_Gallery.jpg" alt="Image 9">
+    <img src="images/Screenshot_20251230_230538_Gallery.jpg" alt="Image 10">
+    <img src="images/Screenshot_20251230_230555_Gallery.jpg" alt="Image 11">
+    <img src="images/Screenshot_20251230_230608_Gallery.jpg" alt="Image 12">
+    <img src="images/Screenshot_20251230_230635_Gallery.jpg" alt="Image 13">
+    <img src="images/Screenshot_20251230_231034_Gallery.jpg" alt="Image 14">
+  </div>
+
+  <div id="about">
+    <h2>About</h2>
+    <p>ABDU Shopping 2026 model. We provide modern solutions and product previews with clear images.</p>
+    <p>Contact phone: <span class="phone">0911464168</span></p>
+  </div>
+</div>
+
+<script>
+// Header resize on scroll
+window.addEventListener('scroll', function(){
+  const header = document.getElementById('header');
+  if(window.scrollY > 50){
+    header.classList.add('small');
+  } else {
+    header.classList.remove('small');
+  }
+});
+
+// Click image to see full size
+document.querySelectorAll('.grid img').forEach(img=>{
+  img.addEventListener('click', function(){
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.background = 'rgba(0,0,0,0.8)';
+    overlay.style.display = 'flex';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.cursor = 'pointer';
+    overlay.onclick = ()=>document.body.removeChild(overlay);
+    
+    const imgFull = document.createElement('img');
+    imgFull.src = img.src;
+    imgFull.style.maxWidth = '90%';
+    imgFull.style.maxHeight = '90%';
+    imgFull.style.borderRadius = '10px';
+    
+    overlay.appendChild(imgFull);
+    document.body.appendChild(overlay);
+  });
+});
+</script>
+
+</body>
+</html>
